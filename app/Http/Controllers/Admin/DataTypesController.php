@@ -97,9 +97,10 @@ class DataTypesController extends Controller
      */
     public function destroy(Request $request,$id)
     {
-        if($id == 'mass')
+        if($id == 'mass'){
             if ($request->filled('ids'))
                 DataType::destroy($request->ids);
+        }
         else
             DataType::destroy($id);
         Session::flash('success', 'Deleted Successfully');

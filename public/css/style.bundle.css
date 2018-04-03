@@ -26618,7 +26618,6 @@ select.m-bootstrap-select {
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   position: relative;
-  padding: 0.65rem 1rem;
   line-height: 1.25; }
   .select2-container--default .select2-selection--single .select2-selection__rendered .select2-selection__clear {
     border: 0;

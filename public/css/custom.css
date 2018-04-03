@@ -7,3 +7,6 @@
     padding:2px;
     font-size: 25px;
 }
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 15px !important;;
+}

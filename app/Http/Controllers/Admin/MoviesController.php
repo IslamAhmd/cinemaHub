@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Genre;
+use App\Http\Requests\Movie\UpdateMovieRequest;
+use App\Http\Requests\Movies\CreateMovieRequest;
+use App\ItemGenre;
+use App\Movie;
+use App\Network;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class MoviesController extends Controller
 {
@@ -14,7 +21,8 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
+        $movies = Movie::with('genres')->get();
+        return view('admin.movies.index', compact('movies'));
     }
 
     /**
@@ -24,7 +32,10 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        $genres = Genre::all();
+        $networks = Network::all();
+        return view('admin.movies.add-edit', compact('genres', 'networks'));
+
     }
 
     /**
@@ -33,9 +44,15 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMovieRequest $request)
     {
-        //
+        $request = $this->saveFiles($request);
+        $movie = Movie::create($request->except(['_token', 'genres']));
+        foreach($request->genres as $genre) {
+            ItemGenre::create(['item_id'=>$movie->id, 'genre_id'=>$genre, 'table_name'=>'movies']);
+        }
+        Session::flash('success', 'Added Successfully');
+        return redirect(route('movies.index'));
     }
 
     /**
@@ -57,7 +74,10 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        $genres = Genre::all();
+        $networks = Network::all();
+        return view('admin.movies.add-edit', compact('genres', 'networks', 'movie'));
     }
 
     /**
@@ -67,9 +87,17 @@ class MoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMovieRequest $request, $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        $request = $this->saveFiles($request);
+        $movie->update($request->except(['_token', 'genres']));
+        ItemGenre::where(['item_id'=>$movie->id])->where(['table_name'=>'movies'])->delete();
+        foreach($request->genres as $genre) {
+            ItemGenre::create(['item_id'=>$movie->id, 'genre_id'=>$genre, 'table_name'=>'movies']);
+        }
+        Session::flash('success', 'Edited Successfully');
+        return redirect(route('movies.index'));
     }
 
     /**
@@ -78,8 +106,15 @@ class MoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if($id == 'mass'){
+            if ($request->filled('ids'))
+                Movie::destroy($request->ids);
+        }
+        else
+            Movie::destroy($id);
+        Session::flash('success', 'Deleted Successfully');
+        return redirect(route('movies.index'));
     }
 }

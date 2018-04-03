@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Network extends Model
+class ItemGenre extends Model
 {
     protected $guarded = [];
+
 }

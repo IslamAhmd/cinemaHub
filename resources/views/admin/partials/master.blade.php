@@ -5,6 +5,7 @@
     <link href="{{asset('public/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/css/custom.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.10/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
     @yield('header')
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
@@ -562,6 +563,7 @@
 <script src="{{asset('public/js/scripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('public/js/dashboard.js')}}" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
 @yield('javascript')
 <script>
     $('.table').DataTable();
@@ -588,6 +590,7 @@
             });
         }
     }
+    $('select').select2();
 </script>
 </body>
 </html>

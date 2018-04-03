@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Networks\CreateNetworkRequest;
+use App\Http\Requests\Networks\UpdateNetworkRequest;
+use App\Network;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class NetworksController extends Controller
 {
@@ -14,7 +18,8 @@ class NetworksController extends Controller
      */
     public function index()
     {
-        //
+        $networks = Network::all();
+        return view('admin.networks.index', compact('networks'));
     }
 
     /**
@@ -24,18 +29,22 @@ class NetworksController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.networks.add-edit');
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateNetworkRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateNetworkRequest $request)
     {
-        //
+        $request = $this->saveFiles($request);
+        Network::create($request->only(['name', 'website', 'image']));
+        Session::flash('success', 'Added Successfully');
+        return redirect(route('networks.index'));
     }
 
     /**
@@ -57,7 +66,8 @@ class NetworksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $network = Network::findOrFail($id);
+        return view('admin.networks.add-edit', compact('network'));
     }
 
     /**
@@ -67,9 +77,14 @@ class NetworksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNetworkRequest $request, $id)
     {
-        //
+        $network = Network::findOrFail($id);
+        $request = $this->saveFiles($request);
+        $network->update($request->only(['name', 'website', 'image']));
+        Session::flash('success', 'Edited Successfully');
+        return redirect(route('networks.index'));
+
     }
 
     /**
@@ -78,8 +93,15 @@ class NetworksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if($id == 'mass'){
+            if ($request->filled('ids'))
+                Network::destroy($request->ids);
+        }
+        else
+            Network::destroy($id);
+        Session::flash('success', 'Deleted Successfully');
+        return redirect(route('networks.index'));
     }
 }
