@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{App::getLocale()}}">
 <head>
-    <title>{{__('admin.auth.login')}}</title>
+    <title>{{__('admin.login')}}</title>
     <link href="{{asset('public/css/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 </head>

@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Genre;
+use App\Http\Requests\Shows\CreateShowRequest;
+use App\Http\Requests\Shows\UpdateShowRequest;
+use App\ItemGenre;
+use App\Network;
+use App\TvShow;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ShowsController extends Controller
 {
@@ -14,7 +21,8 @@ class ShowsController extends Controller
      */
     public function index()
     {
-        //
+        $tv_shows = TvShow::with('genres')->get();
+        return view('admin.tv_shows.index', compact('tv_shows'));
     }
 
     /**
@@ -24,7 +32,9 @@ class ShowsController extends Controller
      */
     public function create()
     {
-        //
+        $genres = Genre::all();
+        $networks = Network::all();
+        return view('admin.tv_shows.add-edit', compact('genres', 'networks'));
     }
 
     /**
@@ -33,9 +43,15 @@ class ShowsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateShowRequest $request)
     {
-        //
+        $request = $this->saveFiles($request);
+        $tv_show = TvShow::create($request->except(['_token', 'genres']));
+        foreach($request->genres as $genre) {
+            ItemGenre::create(['item_id'=>$tv_show->id, 'genre_id'=>$genre, 'table_name'=>'tv_shows']);
+        }
+        Session::flash('success', 'Added Successfully');
+        return redirect(route('shows.index'));
     }
 
     /**
@@ -57,7 +73,11 @@ class ShowsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tv_show = TvShow::findOrFail($id);
+        $genres = Genre::all();
+        $networks = Network::all();
+        return view('admin.tv_shows.add-edit', compact('genres', 'networks', 'tv_show'));
+
     }
 
     /**
@@ -67,9 +87,17 @@ class ShowsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateShowRequest $request, $id)
     {
-        //
+        $tv_show = TvShow::findOrFail($id);
+        $request = $this->saveFiles($request);
+        $tv_show->update($request->except(['_token', 'genres']));
+        ItemGenre::where(['item_id'=>$tv_show->id])->where(['table_name'=>'tv_shows'])->delete();
+        foreach($request->genres as $genre) {
+            ItemGenre::create(['item_id'=>$tv_show->id, 'genre_id'=>$genre, 'table_name'=>'tv_shows']);
+        }
+        Session::flash('success', 'Edited Successfully');
+        return redirect(route('shows.index'));
     }
 
     /**

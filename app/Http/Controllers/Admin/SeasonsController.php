@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Seasons\CreateSeasonRequest;
+use App\Http\Requests\Seasons\UpdateSeasonRequest;
+use App\Season;
+use App\TvShow;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class SeasonsController extends Controller
 {
@@ -14,7 +19,8 @@ class SeasonsController extends Controller
      */
     public function index()
     {
-        //
+        $seasons = Season::with('tv_show')->get();
+        return view('admin.seasons.index', compact('seasons'));
     }
 
     /**
@@ -24,7 +30,8 @@ class SeasonsController extends Controller
      */
     public function create()
     {
-        //
+        $tv_shows = TvShow::all();
+        return view('admin.seasons.add-edit', compact('tv_shows'));
     }
 
     /**
@@ -33,9 +40,12 @@ class SeasonsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSeasonRequest $request)
     {
-        //
+        $request = $this->saveFiles($request);
+        Season::create($request->except(['_token']));
+        Session::flash('success', 'Added Successfully');
+        return redirect(route('seasons.index'));
     }
 
     /**
@@ -57,7 +67,9 @@ class SeasonsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $season = Season::findOrFail($id);
+        $tv_shows = TvShow::all();
+        return view('admin.seasons.add-edit', compact('tv_shows', 'season'));
     }
 
     /**
@@ -67,9 +79,13 @@ class SeasonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSeasonRequest $request, $id)
     {
-        //
+        $season = Season::findOrFail($id);
+        $request = $this->saveFiles($request);
+        $season->update($request->except(['_token']));
+        Session::flash('success', 'Edited Successfully');
+        return redirect(route('seasons.index'));
     }
 
     /**
@@ -78,8 +94,15 @@ class SeasonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if($id == 'mass'){
+            if ($request->filled('ids'))
+                Season::destroy($request->ids);
+        }
+        else
+            Season::destroy($id);
+        Session::flash('success', 'Deleted Successfully');
+        return redirect(route('seasons.index'));
     }
 }

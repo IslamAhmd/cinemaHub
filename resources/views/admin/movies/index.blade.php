@@ -78,10 +78,10 @@
                                     <td>
                                         @foreach($movie->genres as $genre)
                                             {{$genre->name}},
-                                            @endforeach
+                                        @endforeach
                                     </td>
                                     <td>
-                                        {{$movie->network}}
+                                        @if(App\Network::find($movie->network_id)){{App\Network::find($movie->network_id)->name}}@endif
                                     </td>
                                     <td>
                                         {{$movie->description}}

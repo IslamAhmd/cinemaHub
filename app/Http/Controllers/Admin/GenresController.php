@@ -40,7 +40,8 @@ class GenresController extends Controller
      */
     public function store(CreateGenreRequest $request)
     {
-        Genre::create($request->only(['name']));
+        $request = $this->saveFiles($request);
+        Genre::create($request->only(['name', 'image']));
         Session::flash('success', 'Added Successfully');
         return redirect(route('genres.index'));
     }
@@ -77,8 +78,9 @@ class GenresController extends Controller
      */
     public function update(UpdateGenreRequest $request, $id)
     {
+        $request = $this->saveFiles($request);
         $genre = Genre::findOrFail($id);
-        $genre->update($request->only(['name']));
+        $genre->update($request->only(['name', 'image']));
         Session::flash('success', 'Edited Successfully');
         return redirect(route('genres.index'));
     }

@@ -1,6 +1,6 @@
 <?php
 Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => ['localeSessionRedirect', 'localizationRedirect']] , function() {
-    Route::get('/', 'LandingController@index');
+    Route::get('/', 'LandingController@index')->name('landing');
 
     Route::get('/home', 'HomeController@index')->name('home');
 

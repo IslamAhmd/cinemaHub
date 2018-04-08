@@ -1,562 +1,595 @@
 @extends('web.partials.master')
 @section('content')
-<!-- slider goes here -->
+    <div class="flexslider progression-studios-dashboard-slider">
+        <ul class="slides">
+            @foreach($slider_images as $slide)
+                <li class="progression_studios_animate_left">
+                    <div class="progression-studios-slider-dashboard-image-background" style="background-image:url({{asset('public/uploads/'.$slide->image)}});">
+                        <div class="progression-studios-slider-display-table">
+                            <div class="progression-studios-slider-vertical-align">
+                                <div class="container">
+                                    <div class="progression-studios-slider-dashboard-caption-width">
+                                        <div class="progression-studios-slider-caption-align">
+                                            <h2><a href="dashboard-movie-profile.html">{{$slide->caption}}</a></h2>
+                                            <p class="progression-studios-slider-description">{{$slide->caption}}</p>
+                                            <a class="btn btn-green-pro btn-slider-pro btn-shadow-pro afterglow" href="#VideoLightbox-1"><i class="fas fa-play"></i>MORE</a>
+                                        </div><!-- close .progression-studios-slider-caption-align -->
+                                    </div><!-- close .progression-studios-slider-caption-width -->
+                                </div><!-- close .container -->
+                            </div><!-- close .progression-studios-slider-vertical-align -->
+                        </div><!-- close .progression-studios-slider-display-table -->
+                        <div class="progression-studios-slider-mobile-background-cover"></div>
+                    </div><!-- close .progression-studios-slider-image-background -->
+                </li>
+            @endforeach
+        </ul>
+    </div><!-- close .progression-studios-slider - See /js/script.js file for options -->
+    <ul class="dashboard-genres-pro">
+        <li class="active">
+            <i class="fa fa-2x fa-list-ul"></i>
+            <h6>All</h6>
+        </li>
+        @foreach($genres as $genre)
+            <li>
+                <img src="{{asset('public/uploads/thumb/'.$genre->image)}}" alt="Drama">
+                <h6>{{$genre->name}}</h6>
+            </li>
+        @endforeach
+    </ul>
+    <div class="dashboard-container">
+        <h4 class="heading-extra-margin-bottom">Latest Movies</h4>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-1.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Wild Things Are</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-2.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Central Intelligence</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.6"
+                                    data-animation-start-value="0.6"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#ff4141&quot;
+							        }"
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                            ><span style="color:#ff4141;">6.0</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
 
 
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-3.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Zoolander No. 2</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
 
-<div class="fullwidth-slider">
-    <div id="headerslider" class="carousel slide"> 
-        <ol class="carousel-indicators">
-            <li data-target="#headerslider" data-slide-to="0" class="active"></li>
-            <li data-target="#headerslider" data-slide-to="1"></li>
-            <li data-target="#headerslider" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="fill" data-bg-image="{{asset('public/photoes/header.png')}}">
-                 <div class="bs-slider-overlay"></div>
-                    <div class="container movie-slider-container"> 
-                        <div class="row">
-                             <div class="col-sm-12 movie-slider-content"> 
-                                <div class="slider-content" >
-                                    <ul class="subtitle"  data-animation="animated bounceInRight">
-                                        <li>Action</li>
-                                        <li>Science Fiction</li>
-                                        <li>Adventure</li>
-                                    </ul>
-                                    <div class="title" data-animation="animated bounceInRight" >Lord of the rings: The return of the kings <i>(2017)</i></div>
-                                    <div class="slide_right" data-animation="animated bounceInRight">
-                                        <a href="javascript:;" class="btn-trailer">watch trailer</a> <a href="javascript:;" class="btn-ticket">buy ticket</a>
-                                        <ul class="award-logo">
-                                            <li><img src="{{asset('public/photoes/icon1.png')}}" alt="icon" ></li>
-                                            <li><img src="{{asset('public/photoes/icon2.png')}}" alt="icon"></li>
-                                            <li><img src="{{asset('public/photoes/icon3.png')}}" alt="icon"></li>
-                                            <li><img src="{{asset('public/photoes/icon4.png')}}" alt="icon"></li>
-                                        </ul>
-                                    </div>
-                                    <div class="chart-cirle">
-                                        <div class="chart-circle-l" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="64" data-text="6.4" >
-                                            </div>
-                                            <span>IMDB Ratffing</span>
-                                        </div>
-                                        <div class="chart-circle-r" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="84" data-text="8.4" >
-                                            </div>
-                                            <span>Rotten Rating</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" data-bg-image="{{asset('/public/photoes/feature-item.jpg')}}">
-                 <div class="bs-slider-overlay"></div>
-                    <div class="container movie-slider-container"> 
-                        <div class="row">
-                             <div class="col-sm-12 movie-slider-content"> 
-                                <div class="slider-content" >
-                                    <ul class="subtitle"  data-animation="animated bounceInRight">
-                                        <li>Action</li>
-                                        <li>Science Fiction</li>
-                                        <li>Adventure</li>
-                                    </ul>
-                                    <div class="title" data-animation="animated bounceInRight" >The Battle of Algiers (La Battaglia)  <i>(1967)</i></div>
-                                    <div class="slide_right" data-animation="animated bounceInRight">
-                                        <a href="javascript:;" class="btn-trailer">watch trailer</a> <a href="javascript:;" class="btn-ticket">buy ticket</a>
-                                        <ul class="award-logo">
-                                            <li><img src="{{asset('public/photoes/icon1.png')}}" alt="icon" ></li>
-                                            <li><img src="{{asset('public/photoes/icon2.png')}}" alt="icon"></li>
-                                            <li><img src="{{asset('public/photoes/icon3.png')}}" alt="icon"></li>
-                                            <li><img src="{{asset('public/photoes/icon4.png')}}" alt="icon"></li>
-                                        </ul>
-                                    </div>
-                                    <div class="chart-cirle">
-                                        <div class="chart-circle-l" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="94" data-text="9.4">
-                                            </div>
-                                            <span>IMDB Ratffing</span>
-                                        </div>
-                                        <div class="chart-circle-r" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="84" data-text="8.4">
-                                            </div>
-                                            <span>Rotten Rating</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" data-bg-image="{{asset('public/photoes/header.png')}}">
-                 <div class="bs-slider-overlay"></div>
-                    <div class="container movie-slider-container"> 
-                        <div class="row">
-                             <div class="col-sm-12 movie-slider-content"> 
-                                <div class="slider-content" >
-                                    <ul class="subtitle"  data-animation="animated bounceInRight">
-                                        <li>Action</li>
-                                        <li>Science Fiction</li>
-                                    </ul>
-                                    <div class="title" data-animation="animated bounceInRight" >The Battle of Algiers (Di Algeri)<i>(1967)</i></div>
-                                    <div class="slide_right" data-animation="animated bounceInRight">
-                                        <a href="javascript:;" class="btn-trailer">watch trailer</a> <a href="javascript:;" class="btn-ticket">buy ticket</a>
-                                        <ul class="award-logo">
-                                           <li><img src="{{asset('public/photoes/icon1.png')}}" alt="icon" ></li>
-                                            <li><img src="{{asset('public/photoes/icon2.png')}}" alt="icon"></li>
-                                            <li><img src="{{asset('public/photoes/icon3.png')}}" alt="icon"></li>
-                                            <li><img src="{{asset('public/photoes/icon4.png')}}" alt="icon"></li>
-                                        </ul>
-                                    </div>
-                                    <div class="chart-cirle" data-animation="animated bounceInUp">
-                                        <div class="chart-circle-l" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="86" data-text="8.6">
-                                            </div>
-                                            <span>IMDB Ratffing</span>
-                                        </div>
-                                        <div class="chart-circle-r" data-animation="animated bounceInUp">
-                                            <div class="circle-chart" data-circle-width="7" data-percent="74" data-text="7.4">
-                                            </div>
-                                            <span>Rotten Rating</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="carousel-control left" href="#headerslider" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-        </a>
-        <a class="carousel-control right" href="#headerslider" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-        </a>
-    </div>  
-</div>
-<!--End Slider  -->
-
-<!-- Start Latest Movies -->
-  <div class="container-fluid pv11 ">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3 class="heading text-center">Latest Movies</h3>
-                        <div class="ticket-carousel pvt85">
-                            <div class="swiper-container carousel-container movie-images" data-col="5">
-                                <div class="swiper-wrapper">
-                                          <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-1.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-2.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-3.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-4.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-5.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-6.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                    </div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> 
-
-<!-- End Latest movies -->
-
-<!-- Start Latest Tv-Shows -->
-<div class="container-fluid pv11 ">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3 class="heading text-center">Latest TV-Shows</h3>
-                        <div class="ticket-carousel pvt85">
-                            <div class="swiper-container carousel-container movie-images" data-col="5">
-                                <div class="swiper-wrapper">
-                                          <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-1.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-2.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-3.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-4.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-5.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                            <div class="swiper-slide">
-                                            <div class="movie-image" data-bg-image="{{asset('public/photoes/carousel/movie-6.jpg')}}">
-                                                <div class="entry-hover">
-                                                    <div class="entry-actions">
-                                                        <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                                                        <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
-                                                    </div>
-                                                </div>
-                                                <div class="entry-desc">
-                                                    <div class="rating">
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                        <input name="stars" type="radio">
-                                                        <label>☆</label>
-                                                    </div>
-                                                    <h3 class="entry-title">X-Men:Apocalypse</h3>
-                                                    <ul class="entry-date">
-                                                        <li>11 :00</li>  
-                                                        <li>13 :50</li>  
-                                                        <li>14 :00</li>  
-                                                        <li>18 :00</li>  
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                                    </div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> 
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-4.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Bad Neighbors 2</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.72"
+                                    data-animation-start-value="0.72"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">7.2</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
 
 
-<!-- End Latest Tv-Shows -->
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-5.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Star Wars: Rogue One</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-6.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Imitation Game</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.6"
+                                    data-animation-start-value="0.6"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#ff4141&quot;
+							        }"
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                            ><span style="color:#ff4141;">6.0</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
 
 
-<br><br>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-7.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Fantastic Beasts</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-8.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Edge of Tomorrow</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.72"
+                                    data-animation-start-value="0.72"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">7.2</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-9.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Allegiant</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-10.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Lo and Behold</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.6"
+                                    data-animation-start-value="0.6"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#ff4141&quot;
+							        }"
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                            ><span style="color:#ff4141;">6.0</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-11.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Drive</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-12.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Nightcrawler</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.72"
+                                    data-animation-start-value="0.72"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">7.2</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+        </div><!-- close .row -->
+<hr>
+
+
+    </div><!-- close .dashboard-container -->
+
+    <div class="dashboard-container">
+        <h4 class="heading-extra-margin-bottom">Latest Tv Shows</h4>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-1.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Wild Things Are</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-2.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Central Intelligence</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.6"
+                                    data-animation-start-value="0.6"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#ff4141&quot;
+							        }"
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                            ><span style="color:#ff4141;">6.0</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-3.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Zoolander No. 2</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-4.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Bad Neighbors 2</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.72"
+                                    data-animation-start-value="0.72"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">7.2</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-5.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Star Wars: Rogue One</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-6.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">The Imitation Game</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.6"
+                                    data-animation-start-value="0.6"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#ff4141&quot;
+							        }"
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                            ><span style="color:#ff4141;">6.0</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-7.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Fantastic Beasts</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-8.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Edge of Tomorrow</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.72"
+                                    data-animation-start-value="0.72"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">7.2</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-9.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Allegiant</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-10.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Lo and Behold</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.6"
+                                    data-animation-start-value="0.6"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#ff4141&quot;
+							        }"
+                                    data-empty-fill="#ffe1e1"
+                                    data-reverse="true"
+                            ><span style="color:#ff4141;">6.0</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-11.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Drive</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.86"
+                                    data-animation-start-value="0.86"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">8.6</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="item-listing-container-skrn">
+                    <a href="dashboard-movie-profile.html"><img src="images/demo/listing-12.jpg" alt="Listing"></a>
+                    <div class="item-listing-text-skrn">
+                        <div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">Nightcrawler</a></h6>
+                            <div
+                                    class="circle-rating-pro"
+                                    data-value="0.72"
+                                    data-animation-start-value="0.72"
+                                    data-size="32"
+                                    data-thickness="3"
+                                    data-fill="{
+							          &quot;color&quot;: &quot;#42b740&quot;
+							        }"
+                                    data-empty-fill="#def6de"
+                                    data-reverse="true"
+                            ><span style="color:#42b740;">7.2</span></div>
+                        </div><!-- close .item-listing-text-skrn-vertical-align -->
+                    </div><!-- close .item-listing-text-skrn -->
+                </div><!-- close .item-listing-container-skrn -->
+            </div><!-- close .col -->
+
+        </div><!-- close .row -->
+
+
+<hr>
+
+
+    </div><!-- close .dashboard-container -->
+
 @endsection

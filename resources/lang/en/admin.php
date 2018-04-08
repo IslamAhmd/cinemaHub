@@ -46,5 +46,17 @@ return [
     'idmb_id' => 'IMDB Id',
     'runtime' => 'Runtime',
     'in_minutes' => 'In Minutes',
-
+    'tv_shows' => 'TV Shows',
+    'tv_show' => 'TV Show',
+    'tv_shows_id' => 'TV Show',
+    'start_year' => 'Start Year',
+    'end_year' => 'End Year',
+    'seasons' => 'Seasons',
+    'season' => 'Season',
+    'seasons_id' => 'Season',
+    'number' => 'Number',
+    'episodes' => 'Episodes',
+    'episode' => 'Episode',
+    'release_date' => 'Release Date',
+    'login' => 'Login To Admin Panel - Cinema Hub',
 ];

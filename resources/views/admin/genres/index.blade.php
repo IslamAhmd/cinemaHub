@@ -47,6 +47,9 @@
                                     {{__('admin.name')}}
                                 </th>
                                 <th>
+                                    {{__('admin.image')}}
+                                </th>
+                                <th>
                                     {{__('admin.actions')}}
                                 </th>
                             </tr>
@@ -62,6 +65,11 @@
                                     </th>
                                     <td>
                                         {{$genre->name}}
+                                    </td>
+                                    <td>
+                                        @if($genre->image)
+                                            <img title="{{$genre->name}}" src="{{asset('public/uploads/thumb/'.$genre->image)}}" height="80">
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{route('genres.edit', $genre->id)}}" class="btn btn-primary">{{__('admin.edit')}}</a>

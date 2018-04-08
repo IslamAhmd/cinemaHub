@@ -35,7 +35,7 @@
                                         @if(in_array($genre->id,old('genres'))) selected
                                         @endif
                                         @elseif (isset($movie))
-                                        @if($movie->genres == $genre->id) selected
+                                        @if(in_array($genre->id, $movie->genres->pluck('id')->toArray())) selected
                                         @endif
                                         @endif>{{$genre->name}}</option>
                             @endforeach

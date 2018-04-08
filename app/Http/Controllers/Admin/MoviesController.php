@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Genre;
-use App\Http\Requests\Movie\UpdateMovieRequest;
+use App\Http\Requests\Movies\UpdateMovieRequest;
 use App\Http\Requests\Movies\CreateMovieRequest;
 use App\ItemGenre;
 use App\Movie;
